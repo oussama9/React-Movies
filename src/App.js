@@ -24,17 +24,27 @@ function App() {
       });
   }
 
-  
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    if(searchInput){
+      getMovies(SEARCH_API+searchInput);
+      setSearchInput("");
+    }
+};
+
+  const handleOnChange = (e) => {
+    setSearchInput(e.target.value);
+  }
   return (
     <div className='container'>
        <header>
-         <form >
+         <form onSubmit={handleOnSubmit}>
           <input 
             className='search' 
             type="search" 
             placeholder='Search ...' 
             value={searchInput}
-            
+            onChange={handleOnChange}
             />
          </form>
         </header>
